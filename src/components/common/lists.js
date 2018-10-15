@@ -3,10 +3,7 @@ import React, { Component } from 'react';
 import { Grid, ListView } from 'antd-mobile'
 
 class Lists extends Component {
-    shouldComponentUpdate(props){
-        console.log(222,props)
-        return props.data
-    }
+
     render() {
         console.log(999,this.props.data)
         return (

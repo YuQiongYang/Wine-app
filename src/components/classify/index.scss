@@ -1,21 +1,26 @@
 .App {
-    background: #fff;
+    // background: #fff;
 }
 
 .classify {
+    background: #fff;
     header {
         border-bottom: 1px solid #ececec;
-
+        height: 0.5rem;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
         span {
             display: block;
-            width: 90%;
-            height: 0.35rem;
+            width: 80%;
+            height: 0.25rem;
             border-radius: 6px;
             padding: 5px 5%;
             background: #ececec;
             line-height: 0.25rem;
             color: #ccc;
-            margin: 0.1rem auto 0.05rem;
+            // margin: 0.1rem auto 0.05rem;
         }
     }
 
@@ -48,7 +53,7 @@
             div {
                 span {
                     display: inline-block;
-                    width: 49.5%;
+                    width: 46.5%;
                     background: #efefef;
                     color: #333;
                     margin-right: 1%;

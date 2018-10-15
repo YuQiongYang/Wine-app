@@ -14,6 +14,7 @@
         height: 0.35rem;
         border-radius: 6px;
         padding: 5px 5%;
+        box-sizing: border-box;
         background: #fff;
         position: absolute;
         line-height: 0.25rem;
@@ -26,18 +27,21 @@
 }
 
 .kinds {
+    margin-top: 0.1rem;
     .am-grid {
         border-bottom: 1px solid #dfdfdf;
         background: #dfdfdf;
-        height: 1.81rem;
-
+        // height: 1.81rem;
+        .am-grid-item-content{
+            padding: 0;
+        }
         .am-flexbox-item {
-            height: 2.8rem;
+            // height: 2.8rem;
         }
     }
 
     .am-flexbox {
-        height: 0.9rem;
+        // height: 0.9rem;
     }
 }
 
@@ -99,18 +103,20 @@
 
 .goodList {
     .am-grid-item-content {
-        height: 2.71rem;
         // background: #f1f1f1;
     }
 
     .am-flexbox-item {
         height: 2.7rem;
-
+        .am-grid-item-content{
+            // height: 2.5rem;
+        }
         .imgName {
             display: flex;
             flex-direction: column;
             justify-content: space-between;
             align-items: center;
+            height: 2rem;
         }
     }
 
@@ -132,7 +138,16 @@
         padding: 0 0.2rem;
     }
 }
+.listDetails{
+    height: 1.9rem;
+    p{
+        font-size: 0.12rem;
+    }
+}
 
-.selectwine {
-    // margin-top: 0.1rem;
+.AppNav {
+    width: 100%;
+    position: fixed;
+    bottom: -0.01rem;
+    left: 0;
 }

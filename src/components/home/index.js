@@ -5,6 +5,7 @@ import Banner from './carousel/banner'
 import Kinds from './kinds/kinds'
 import Selectwine from './selectWine'
 import Mask from '../common/mask'
+import AppNav from '../common/AppNav'
 
 class Home extends Component {
     constructor() {
@@ -54,6 +55,7 @@ class Home extends Component {
                 <Banner banner={this.state.banner} />
                 <Kinds kinds={this.state.kinds} />
                 <Selectwine />
+                <AppNav></AppNav>
                 <Mask isMark={this.state.isMark}/>
                 {/* <Demo /> */}
             </div>

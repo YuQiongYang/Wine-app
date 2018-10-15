@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import {withRouter} from 'react-router-dom'
 import { TabBar } from 'antd-mobile'
 import octicons from 'octicons'
 
@@ -51,11 +51,11 @@ class AppNav extends Component {
 
 
     render() {
-        // let { pathname } = this.props.history.location
+        let { pathname } = this.props.history.location
 
         return (
-            <div>
-                {/* <TabBar tintColor="#cd0011">
+            <div className="AppNav">
+                <TabBar tintColor="#cd0011">
                     {
                         this.state.tabs.map(tab => {
                             return <TabBar.Item
@@ -69,10 +69,10 @@ class AppNav extends Component {
                             </TabBar.Item>
                         })
                     }
-                </TabBar> */}
+                </TabBar>
             </div>
         )
     }
 }
 
-export default AppNav
+export default withRouter(AppNav)

@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import './index.scss'
 
+import AppNav from '../common/AppNav'
+
 import { Icon } from 'antd-mobile';
 
 class Classify extends Component {
@@ -60,6 +62,7 @@ class Classify extends Component {
                         })
                     }
                 </ul>
+                <AppNav />
             </div>
         )
     }

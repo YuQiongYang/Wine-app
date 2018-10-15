@@ -68,29 +68,15 @@ class App extends Component {
   render() {
     let { pathname } = this.props.history.location
     return (<div className="App" >
-      <TabBar tintColor="#cd0011">
-        {
-          this.state.tabs.map(tab => {
-            return <TabBar.Item
-              title={tab.text}
-              key={tab.id}
-              icon={<div dangerouslySetInnerHTML={{ __html: octicons[tab.icon].toSVG() }} />}
-              selectedIcon={<div className="selected" dangerouslySetInnerHTML={{ __html: octicons[tab.icon].toSVG() }} />}
-              selected={tab.path == pathname}
-              onPress={this.handleChangeCurrent.bind(this, tab)}
-            >
-              <Switch>
-                <Route exact path="/" component={Home}></Route>
-                <Route path="/classify" component={Classify}></Route>
-                <Route path="/mine" component={Mine}></Route>
-                <Route path="/cart" component={Cart}></Route>
-                <Route path="/welfare" component={Welfare}></Route>
-                <Route path="/lists/:ParentID" component={Lists}></Route>
-              </Switch>
-            </TabBar.Item>
-          })
-        }
-      </TabBar>
+
+      <Switch>
+        <Route exact path="/" component={Home}></Route>
+        <Route path="/classify" component={Classify}></Route>
+        <Route path="/mine" component={Mine}></Route>
+        <Route path="/cart" component={Cart}></Route>
+        <Route path="/welfare" component={Welfare}></Route>
+        <Route path="/lists/:ParentID" component={Lists}></Route>
+      </Switch>
     </div>
     );
   }

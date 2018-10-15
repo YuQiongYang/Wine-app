@@ -97,19 +97,20 @@ class Lists extends Component {
                 sort: list.sort
             }
         }, () => {
-           this.getData(this.state.reqData)
+            this.getData(this.state.reqData)
         })
     }
     getData(reqData) {
         this.$http.get('BtCApi/List/GetProListWhere', reqData).then(res => {
             this.setState({
-                isMask:true
+                isMask: true
             })
             // console.log(666, res)
             if (res.status) {
+                console.log(333)
                 this.setState({
                     data: res.data.Prolist,
-                    isMask:false
+                    isMask: false
                 })
             }
 
@@ -135,12 +136,15 @@ class Lists extends Component {
         return state.data.length > 0
     }
     render() {
+        setTimeout(()=>{
+            console.log(JSON.stringify(this.state.data))
+        },1000)
         return (
             <div className="App-lists">
                 <div className="selectLists">
                     <header>
                         <div className="search">
-                            <Icon type="left" onTouchStart={()=>{
+                            <Icon type="left" onTouchStart={() => {
                                 this.props.history.goBack()
                             }}></Icon>
                             <input type="text" placeholder="请输入商品名称"></input>
@@ -199,7 +203,7 @@ class Lists extends Component {
                 <div className="allLists">
                     <List data={this.state.data} />
                 </div>
-                <Mask isMask={this.state.isMask}/>
+                <Mask isMask={this.state.isMask} />
             </div>
         )
     }
