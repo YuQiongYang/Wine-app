@@ -9,3 +9,4 @@ class Classify extends Component{
 }
 
 export default Classify
+

@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Icon } from 'antd-mobile';
+import List from '../common/lists'
+import Mask from '../common/mask'
 
 import './index.scss'
 
@@ -12,50 +14,135 @@ class Lists extends Component {
                 id: 1,
                 name: '综合',
                 icon: 'down',
+                isOpen: false,
                 child: [{
-                    id: 1 - 1,
-                    name: '评价最多'
+                    id: '1 - 1',
+                    name: '评价最高',
+                    sort: 1
                 }, {
-                    id: 1 - 2,
-                    name: '最新产品'
+                    id: '1 - 2',
+                    name: '最新产品',
+                    sort: 2
                 }]
             }, {
                 id: 2,
                 name: '销量',
-                child: [{
-                    id: 2 - 1,
-                    name: '销量'
-                }]
+                sort: 0
             }, {
                 id: 3,
                 name: '价格',
                 icon: 'down',
+                isOpen: false,
                 child: [{
-                    id: 3 - 1,
-                    name: '价格由低到高'
+                    id: '3 - 1',
+                    name: '价格由低到高',
+                    sort: 5
                 }, {
-                    id: 3 - 2,
-                    name: '价格由低到高'
+                    id: '3 - 2',
+                    name: '价格由高到低',
+                    sort: 4
                 }]
             }],
             icon: 'down',
-            isOpen: false
+            isOpen: false,
+            currentIndex: 1,
+            listIdx: '',
+            reqData: {
+                ParentID: 1,
+                brand: 0,
+                strWhere: '0,0,0,0,0',
+                sort: 0,
+                PageIndex: 1,
+                PageSize: 20,
+                userID: 0
+            },
+            data: [],
+            isMask: true
         }
     }
 
     showItem(item, i) {
+        let { tabs, isOpen, reqData } = this.state
+        if (item.child) {
+            item.isOpen = !item.isOpen
+            if (item.isOpen) {
+                item.icon = "up"
+            } else {
+                item.icon = 'down'
+            }
+            let changeShow = "tabs[" + i + "].isOpen"
+            let changeIcon = "tabs[" + i + "].icon"
+            this.setState({
+                [changeShow]: !item.isOpen,
+                [changeIcon]: item.icon,
+                currentIndex: i,
+                reqData: {
+                    ...reqData,
+                    sort: item.sort
+                }
+            })
+        }
+
+
+
+    }
+    handerKey(list) {
+        let { reqData } = this.state
+        // console.log(list.sort)
+        if (this.state.reqData.sort === list.sort) return false
         this.setState({
-            isOpen: !this.state.isOpen
+            listIdx: list.id,
+            reqData: {
+                ...reqData,
+                sort: list.sort
+            }
+        }, () => {
+           this.getData(this.state.reqData)
         })
     }
+    getData(reqData) {
+        this.$http.get('BtCApi/List/GetProListWhere', reqData).then(res => {
+            this.setState({
+                isMask:true
+            })
+            // console.log(666, res)
+            if (res.status) {
+                this.setState({
+                    data: res.data.Prolist,
+                    isMask:false
+                })
+            }
 
+        })
+    }
+    componentDidMount() {
+        let { reqData, data } = this.state
+        let { params } = this.props.match
+        // this.getData(reqData)
+        if (params.ParentID === reqData.ParentID) return false
+        // console.log(666)
+        this.setState({
+            reqData: {
+                ...reqData,
+                ParentID: params.ParentID
+            }
+        }, () => {
+            this.getData(this.state.reqData)
+        })
+
+    }
+    shouldComponentUpdate(props, state) {
+        return state.data.length > 0
+    }
     render() {
         return (
             <div className="App-lists">
                 <div className="selectLists">
                     <header>
                         <div className="search">
-                            <Icon type="left"></Icon>
+                            <Icon type="left" onTouchStart={()=>{
+                                this.props.history.goBack()
+                            }}></Icon>
                             <input type="text" placeholder="请输入商品名称"></input>
                             <span>搜索</span>
                         </div>
@@ -65,49 +152,58 @@ class Lists extends Component {
                         {
                             this.state.tabs.map((item, i) => {
                                 if (item.child) {
-                                    return <Menu key={i} menuData={item} />
+                                    return (
+                                        <li key={item.id}>
+                                            <span
+                                                style={{ color: this.state.currentIndex === i ? "red" : '' }}
+                                                onTouchStart={this.showItem.bind(this, item, i)}>
+                                                {item.name}
+                                                <Icon type={item.icon}></Icon>
+                                            </span>
+                                            <div style={{ display: this.state.currentIndex === i && item.isOpen ? "block" : "none" }}>
+                                                {
+                                                    item.child.map(list => {
+                                                        return (<p
+                                                            style={{ color: this.state.listIdx === list.id ? "red" : '' }}
+                                                            onTouchStart={this.handerKey.bind(this, list)}
+                                                            key={list.id}>{list.name}</p>)
+                                                    })
+                                                }
+                                            </div>
+                                        </li>
+                                    )
                                 }
-                                return <Menu key={i} menuData={item} />
+                                return (
+                                    <li key={item.id}>
+                                        <span
+                                            style={{ color: this.state.currentIndex === i ? "red" : '' }}
+                                            onTouchStart={() => {
+                                                if (this.state.reqData.sort === item.sort) return false
+                                                this.setState({
+                                                    currentIndex: i, reqData: {
+                                                        ...this.state.reqData,
+                                                        sort: item.sort
+                                                    }
+                                                }, () => {
+                                                    this.getData(this.state.reqData)
+                                                })
+
+                                            }}
+                                        >{item.name}</span>
+                                    </li>
+                                )
                             })
                         }
                     </ul>
                 </div>
-
+                <div className="allLists">
+                    <List data={this.state.data} />
+                </div>
+                <Mask isMask={this.state.isMask}/>
             </div>
         )
     }
 }
 
-class Menu extends Component {
-    constructor() {
-        super()
-        this.state = {
-            isOpen: false
-        }
-    }
-    showItem() {
-        this.setState({
-            isOpen: !this.state.isOpen
-        },()=>{
-            console.log(this.state.isOpen)
-        })
-    }
-    render() {
-        // console.log(this.props.menuData)
-        return (
-            <li>
-                <span onClick={this.showItem.bind(this)}>{this.props.menuData.name}</span>
-                <div style={{ display: this.state.isOpen ? "block" : "none" }}>
-                    {
-                        this.props.menuData.child.map(item => {
-                            return (<p key={item.id}>{item.name}</p>)
-                        })
-                    }
-                </div>
-            </li>
-        )
-
-    }
-}
 
 export default Lists

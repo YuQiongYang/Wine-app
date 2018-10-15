@@ -85,7 +85,7 @@ class App extends Component {
                 <Route path="/mine" component={Mine}></Route>
                 <Route path="/cart" component={Cart}></Route>
                 <Route path="/welfare" component={Welfare}></Route>
-                <Route path="/lists" component={Lists}></Route>
+                <Route path="/lists/:ParentID" component={Lists}></Route>
               </Switch>
             </TabBar.Item>
           })

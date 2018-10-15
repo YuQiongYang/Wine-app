@@ -30,6 +30,10 @@
         border-bottom: 1px solid #dfdfdf;
         background: #dfdfdf;
         height: 1.81rem;
+
+        .am-flexbox-item {
+            height: 2.8rem;
+        }
     }
 
     .am-flexbox {
@@ -94,25 +98,41 @@
 }
 
 .goodList {
-    .am-grid-item-content{
+    .am-grid-item-content {
         height: 2.71rem;
         // background: #f1f1f1;
     }
+
+    .am-flexbox-item {
+        height: 2.7rem;
+
+        .imgName {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+        }
+    }
+
     img {
+        width: 1.5rem;
+        height: 1.5rem;
         background: #f1f1f1;
     }
 
     p {
         margin-top: 0.1rem;
         margin-bottom: 0.3rem;
-
+        // padding: 0 0.2rem;
     }
 
     span {
         color: red;
         text-align: left;
+        padding: 0 0.2rem;
     }
 }
-.selectwine{
+
+.selectwine {
     // margin-top: 0.1rem;
 }

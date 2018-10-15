@@ -4,7 +4,7 @@ import './index.scss'
 import Banner from './carousel/banner'
 import Kinds from './kinds/kinds'
 import Selectwine from './selectWine'
-import Demo from './text'
+import Mask from '../common/mask'
 
 class Home extends Component {
     constructor() {
@@ -12,6 +12,7 @@ class Home extends Component {
         this.state = {
             banner: [],
             kinds: [],
+            isMark:true
         }
     }
     componentWillUnmount () {
@@ -35,6 +36,12 @@ class Home extends Component {
             this.setState({
                 banner,
                 kinds
+            },()=>{
+                if(this.state.banner && this.state.kinds){
+                    this.setState({
+                        isMark: false
+                    })
+                }
             })
         })
     }
@@ -47,6 +54,7 @@ class Home extends Component {
                 <Banner banner={this.state.banner} />
                 <Kinds kinds={this.state.kinds} />
                 <Selectwine />
+                <Mask isMark={this.state.isMark}/>
                 {/* <Demo /> */}
             </div>
         )

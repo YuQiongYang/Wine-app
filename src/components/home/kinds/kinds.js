@@ -2,12 +2,15 @@ import React, { Component } from 'react';
 
 import { Grid, Carousel } from 'antd-mobile'
 
+import {withRouter} from 'react-router-dom'
+
 class Kinds extends Component {
     constructor() {
         super()
         this.state = {
             calousel: [],
             imgHeight: 170,
+            isMask:true
         }
     }
     componentDidMount() {
@@ -20,13 +23,20 @@ class Kinds extends Component {
     }
     render() {
         let { kinds } = this.props
+        console.log(kinds)
         return (
             <div className="kinds">
                 <Grid data={kinds} hasLine={false}
                     columnNum={5}
                     renderItem={
                         item => (
-                            <img src={item.Pic} style={{ width: '0.7rem' ,background:'#dfdfdf'}} />
+                            <img 
+                            src={item.Pic} 
+                            style={{ width: '0.7rem' ,background:'#dfdfdf'}} 
+                            onTouchStart={()=>{
+                                this.props.history.push(`lists/${item.Url}`)
+                            }}
+                            />
                         )
                     }
                 />
@@ -66,4 +76,4 @@ class Kinds extends Component {
     }
 }
 
-export default Kinds
+export default withRouter(Kinds)
