@@ -1,0 +1,66 @@
+.App {
+    background: #fff;
+}
+
+.classify {
+    header {
+        border-bottom: 1px solid #ececec;
+
+        span {
+            display: block;
+            width: 90%;
+            height: 0.35rem;
+            border-radius: 6px;
+            padding: 5px 5%;
+            background: #ececec;
+            line-height: 0.25rem;
+            color: #ccc;
+            margin: 0.1rem auto 0.05rem;
+        }
+    }
+
+    .classifyLists {
+        li {
+            p {
+                padding: 0.1rem;
+                color: #525252;
+                font-size: 0.16rem;
+
+                a {
+                    color: #ccc;
+                    float: right;
+                    overflow: hidden;
+                    height: 0.14rem;
+                    line-height: 0.14rem;   
+                    span {
+                        font-size: 0.12rem;
+                        float: left;
+                    }
+
+                    svg {
+                        width: 0.16rem;
+                        height: 0.16rem;
+                        float: right;
+                    }
+                }
+            }
+
+            div {
+                span {
+                    display: inline-block;
+                    width: 49.5%;
+                    background: #efefef;
+                    color: #333;
+                    margin-right: 1%;
+                    padding: 0.1rem 0.05rem;
+                    margin-bottom: 1%;
+                }
+
+                span:nth-child(2n) {
+                    margin-right: 0;
+                }
+            }
+        }
+    }
+
+}

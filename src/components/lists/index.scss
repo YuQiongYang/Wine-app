@@ -1,0 +1,93 @@
+.App-lists {
+    width: 100%;
+
+    .selectLists {
+        width: 100%;
+        position: fixed;
+    }
+
+    header {
+        overflow: hidden;
+
+        .search {
+            position: relative;
+            top: 0px;
+            width: 100%;
+            height: 0.46rem;
+            padding: 0.1rem 0.2rem;
+            line-height: 0.25rem;
+
+            svg {
+                float: left;
+            }
+
+            input {
+                background-color: #ECECEC;
+                color: #333;
+                border-radius: 4px;
+                width: 2.5rem;
+                padding: 0.08rem 0.2rem;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                border: 0;
+
+            }
+
+            span {
+                display: inline-block;
+                float: right;
+
+            }
+
+        }
+    }
+
+    .listsTabs {
+        width: 100%;
+        // overflow: hidden;
+        height: 0.36rem;
+        padding: 0.1rem 0.1rem;
+        li {
+            width: 33.33333%;
+            float: left;
+            text-align: center;
+            font-size: 0.14rem;
+            position: relative;
+            span {
+                // border-right: 1px solid #ccc;
+                display: block;
+                position: relative;
+                svg{
+                    position: absolute;
+                    top: 50%;
+                    right: 0.15rem;
+                    transform: translateY(-50%);
+                    width: 0.16rem;
+                    height: 0.16rem;
+                }
+            }
+            div{
+                width: 100%;
+                display: none;
+                position: absolute;
+                top: 0.16rem;
+                left: 0;
+                border: 1px solid #ddd;
+                border-top: 0 none;
+                border-radius: 0 0 0.08rem 0.08rem;
+
+                p{
+                    padding: 0.1rem 0.1rem 0.05rem;
+                    // border-bottom: 1px solid #ccc;
+                }
+            }
+        }
+        li:nth-child(3){
+            span{
+                border: 0 none;
+            }
+        }
+    }
+}

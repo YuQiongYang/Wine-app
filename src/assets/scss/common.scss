@@ -1,0 +1,31 @@
+html,
+body {
+    height: 100%;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+}
+
+#root,
+.App {
+    height: 100%;
+}
+
+.am-tab-bar-tab-icon svg {
+    fill: #333;
+}
+
+.selected svg {
+    fill: #cd0011;
+}
+
+.slider-slide img {
+    width: 100%;
+}
+
+ul,
+li {
+    list-style: none;
+}
