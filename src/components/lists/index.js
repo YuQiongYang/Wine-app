@@ -88,7 +88,6 @@ class Lists extends Component {
     }
     handerKey(list) {
         let { reqData } = this.state
-        // console.log(list.sort)
         if (this.state.reqData.sort === list.sort) return false
         this.setState({
             listIdx: list.id,
@@ -105,9 +104,7 @@ class Lists extends Component {
             this.setState({
                 isMask: true
             })
-            // console.log(666, res)
             if (res.status) {
-                console.log(333)
                 this.setState({
                     data: res.data.Prolist,
                     isMask: false
@@ -119,26 +116,35 @@ class Lists extends Component {
     componentDidMount() {
         let { reqData, data } = this.state
         let { params } = this.props.match
-        // this.getData(reqData)
+        let brand = this.props.location.search.split('?brand=')[1]
         if (params.ParentID === reqData.ParentID) return false
-        // console.log(666)
-        this.setState({
-            reqData: {
-                ...reqData,
-                ParentID: params.ParentID
-            }
-        }, () => {
-            this.getData(this.state.reqData)
-        })
+        if (brand) {
+            this.setState({
+                reqData: {
+                    ...reqData,
+                    ParentID: params.ParentID,
+                    brand
+                }
+            }, () => {
+                this.getData(this.state.reqData)
+            })
+        } else {
+            this.setState({
+                reqData: {
+                    ...reqData,
+                    ParentID: params.ParentID
+                }
+            }, () => {
+                this.getData(this.state.reqData)
+            })
+        }
+
 
     }
     shouldComponentUpdate(props, state) {
         return state.data.length > 0
     }
     render() {
-        setTimeout(()=>{
-            console.log(JSON.stringify(this.state.data))
-        },1000)
         return (
             <div className="App-lists">
                 <div className="selectLists">

@@ -5,7 +5,7 @@ import { Grid, ListView } from 'antd-mobile'
 class Lists extends Component {
 
     render() {
-        console.log(999,this.props.data)
+        // console.log(999,this.props.data)
         return (
             <div className="goodList" style={{ background: '#f1f1f1' }}>
                 <Grid data={this.props.data} columnNum={2}

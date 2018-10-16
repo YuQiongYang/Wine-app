@@ -9,7 +9,16 @@ class Classify extends Component {
     constructor() {
         super()
         this.state = {
-            data: []
+            data: [],
+            reqData: {
+                ParentID: 1,
+                brand: 11,
+                strWhere: '0,0,0,0,0',
+                sort: 0,
+                PageIndex: 1,
+                PageSize: 20,
+                userID: 0,
+            }
         }
     }
 
@@ -42,20 +51,24 @@ class Classify extends Component {
                         this.state.data.map(wine => {
                             if (wine) {
                                 return <li key={wine.Url}>
-                                        <p>
+                                    <p>
                                         {wine.TypeName}
-                                        <a href="javascript:"><span>查看更多</span><Icon type="right"></Icon></a>
-                                        </p>
-                                        <div>
-                                            {
-                                            wine.TypeData.map(item=>{
-                                                if(item){
-                                                    return <span key={item.Url}>{item.Name}</span>
+                                        <a href="javascript:" onTouchStart={() => {
+                                            this.props.history.push(`allWine/${wine.Url}`)
+                                        }}><span>查看更多</span><Icon type="right"></Icon></a>
+                                    </p>
+                                    <div>
+                                        {
+                                            wine.TypeData.map(item => {
+                                                if (item) {
+                                                    return <span onTouchStart={()=>{
+                                                        this.props.history.push(`lists/${wine.Url}?brand=${item.Url}`)
+                                                    }} key={item.Url}>{item.Name}</span>
                                                 }
                                             })
                                         }
-                                        </div>
-                                       </li>
+                                    </div>
+                                </li>
 
                             }
 
