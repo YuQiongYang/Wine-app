@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 
 import { Grid, ListView } from 'antd-mobile'
 
+import {withRouter} from 'react-router-dom'
+
 class Lists extends Component {
 
     render() {
@@ -12,7 +14,16 @@ class Lists extends Component {
                     square={false} className="not-square-grid"
                     renderItem={
                         item => (
-                            <div className="listDetails">
+                            <div className="listDetails" onTouchStart={
+                                ()=>{
+                                    // console.log(item)
+                                    if(item.ID){
+                                        this.props.history.push(`/details/${item.ID}`)
+                                    }else if(item.ProductId){
+                                        this.props.history.push(`/details/${item.ProductId}`)
+                                    }
+                                }
+                            }>
                                 <div className="imgName">
                                 <img src={`http://img0.gjw.com/product/${item.Pic}`}
                                     style={{ width: '1.5rem', background: '#dfdfdf' }} alt="" />
@@ -40,4 +51,4 @@ class Lists extends Component {
     }
 }
 
-export default Lists
+export default withRouter(Lists)

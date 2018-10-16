@@ -61,7 +61,7 @@ class Classify extends Component {
                                         {
                                             wine.TypeData.map(item => {
                                                 if (item) {
-                                                    return <span onTouchStart={()=>{
+                                                    return <span onTouchStart={() => {
                                                         this.props.history.push(`lists/${wine.Url}?brand=${item.Url}`)
                                                     }} key={item.Url}>{item.Name}</span>
                                                 }
@@ -69,9 +69,7 @@ class Classify extends Component {
                                         }
                                     </div>
                                 </li>
-
                             }
-
                         })
                     }
                 </ul>

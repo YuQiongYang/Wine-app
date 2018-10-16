@@ -30,8 +30,7 @@ export default {
         method: 'post',
         data: _params,
         headers: {
-          'Content-Type': 'application/x-www-form-urlencoded',
-          "auth": window.localStorage.getItem('token')
+          'Content-Type': 'application/x-www-form-urlencoded'
         },
         transformRequest: [function (data) {
           let ret = ''

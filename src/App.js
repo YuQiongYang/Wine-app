@@ -20,7 +20,7 @@ import Cart from './components/cart'
 import Mine from './components/mine'
 import Lists from './components/lists'
 import AllWines from './components/classify/allWines'
-import octicons from 'octicons'
+import Details from './components/details'
 
 class App extends Component {
   handleChangeCurrent(tab) {
@@ -33,13 +33,13 @@ class App extends Component {
   render() {
     let { pathname } = this.props.history.location
     return (<div className="App" >
-
       <Switch>
         <Route exact path="/" component={Home}></Route>
         <Route path="/classify" component={Classify}></Route>
         <Route path="/mine" component={Mine}></Route>
         <Route path="/cart" component={Cart}></Route>
         <Route path="/welfare" component={Welfare}></Route>
+        <Route path="/details/:id" component={Details}></Route>
         <Route path="/lists/:ParentID" component={Lists}></Route>
         <Route path="/allWine/:ParentID" component={AllWines}></Route>
       </Switch>

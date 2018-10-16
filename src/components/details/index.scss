@@ -1,0 +1,132 @@
+.wineDetails{
+    background: #fff;
+    header{
+        height: 0.45rem;
+        position: relative;
+        padding: 0 0.2rem;
+        line-height: 0.45rem;
+        background: #fff;
+        border-bottom: 1px solid #dedede;
+        svg{
+            position: absolute;
+            top: 50%;
+            left: 0;
+            transform: translateY(-50%);
+        }
+        p{
+            text-align: center;
+            font-size: 0.16rem;
+        }
+    }
+    .calousel{
+        border-bottom: 1px solid #dedede;
+        img{
+            width: 100%;
+            height: 3.45rem;
+            background: #dedede;
+        }
+    }
+    .goods-introduce{
+        padding: 0.1rem 0.2rem;
+
+    }
+    .productName{
+        height: 0.75rem;
+        border-bottom: 1px solid #dedede;
+
+        p{
+            line-height: 0.25rem;
+            font-size: 0.14rem;
+        }
+        .icon{
+            float: right;
+            overflow: hidden;
+            svg{
+                width: 0.18rem;
+                height: 0.18rem;
+                margin-bottom: 0.05rem;
+                margin-left: 0.05rem;
+            }
+           span{
+               display: block;
+               font-size: 0.12rem;
+           }
+        }
+    }
+    .price{
+        overflow: hidden;
+        height: 0.4rem;
+        // border-bottom: 1px solid #dedede;
+        span{
+            line-height: 0.4rem;
+            display: block;
+        }
+        span:nth-child(1){
+            color: red;
+            float: left;
+            font-size: 0.16rem;
+        }
+        span:nth-child(2){
+            float: right;
+        }
+    }
+    .goodsNum{
+        overflow: hidden;
+        border-bottom: 1px solid #dedede;
+        border-top: 1px solid #dedede;
+        padding: 0.1rem 0;
+        >span{
+            float: left;
+            line-height: 0.35rem;
+            margin-right: 0.1rem;   
+        }
+    }
+    .cal{
+        float: left;
+        width: 1.5rem;
+        height: 0.35rem;
+        border: 1px solid #e5e5e5;
+        border-radius: 0.1rem 0.1rem;
+        span{
+            float: left;
+            display: block;
+            width: 0.5rem;
+            height: 100%;
+            background: #f8f8f8;
+            text-align: center;
+            font-size: 0.2rem;
+            line-height: 0.35rem;
+        }
+        span:nth-of-type(1){
+            border-radius: 0.1rem 0 0 0.1rem;
+        }
+        span:nth-of-type(3){
+            float: right;
+            border-radius: 0 0.1rem 0.1rem 0;
+        }
+        span:nth-of-type(2){
+            width: 0.45rem;
+            background: #fff;
+            font-size: 0.16rem;
+            height: 100%;
+            text-align: center;
+            border :0 none;
+        }
+    }
+    .tips{
+        p{
+            height: 0.4rem;
+            line-height: 0.4rem;
+            span{
+                margin-left: 0.05rem;
+            }
+        }
+    }
+    .comment{
+        span{
+            display: block;
+            line-height: 0.3rem;
+            border-bottom: 1px solid #dedede;
+        }
+    }
+}

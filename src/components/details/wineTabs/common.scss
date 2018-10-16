@@ -1,0 +1,33 @@
+.commentsData{
+    li{
+        overflow: hidden;
+        padding: 0.2rem 0.1rem;
+        border-bottom: 1px solid #dedede;
+        img{
+            float: left;
+            width: 0.55rem;
+        }
+        div{
+            float: right;
+            width: 2.5rem;
+            P:nth-child(1){
+                width: 100%;
+                overflow: hidden;
+                margin-bottom: 0.25rem;
+                span{
+                    display: block;
+                    float: left;
+                }
+                span:nth-child(1){
+                    margin-right: 0.2rem;
+                }
+                span:nth-child(2){
+                    background: #FF7F00;
+                    border-radius: 0.05rem;
+                    color: #fff;
+                    padding: 0.02rem;
+                }
+            }
+        }
+    }
+}
