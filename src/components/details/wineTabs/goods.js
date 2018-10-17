@@ -66,6 +66,8 @@ class Goods extends Component {
                                 }
                                 this.setState({
                                     goodsNum: goodsNum - 1
+                                },()=>{
+                                    this.props.handelQuantity(this.state.goodsNum)
                                 })
                             }}>-</span>
                             <span>{this.state.goodsNum}</span>
@@ -75,6 +77,8 @@ class Goods extends Component {
                                 }
                                 this.setState({
                                     goodsNum: goodsNum + 1
+                                },()=>{
+                                    this.props.handelQuantity(this.state.goodsNum)
                                 })
                             }}>+</span>
                         </div>

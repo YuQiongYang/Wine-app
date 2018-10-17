@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 
-import { Icon, Tabs, WhiteSpace, Badge } from 'antd-mobile'
+import { Icon, Tabs, WhiteSpace, Badge, Toast } from 'antd-mobile'
 
 import { StickyContainer, Sticky } from 'react-sticky';
+
+import { connect } from 'react-redux';
 
 import Goods from './wineTabs/goods'
 import GoodsDetails from './wineTabs/goodsDetails'
@@ -50,7 +52,21 @@ class Details extends Component {
                 score: 0
             },
             commentsData: [],
-            listAttr: []
+            listAttr: [],
+            addCartParams: {
+                UserID: null,
+                Signid: null,
+                DeviceId: 'fb6cd64e-3ab6-4baa-bf2d-c8f9ff6a8cc8',
+                PhoneVersion: null,
+                ClientVersion: '1.0.0.1',
+                ClientType: 0,
+                ProductID: 0,
+                Quantity: 1,
+                Increase: true,
+                BuyType: 0,
+                Type: 0,
+            },
+            Quantity:1
         }
     }
     componentDidMount() {
@@ -88,6 +104,31 @@ class Details extends Component {
         }
 
     }
+    handelAddCart() {
+        let {addCartParams, Quantity} = this.state
+        this.setState({
+            addCartParams:{
+                ...addCartParams,
+                ProductID: this.props.match.params.id,
+                Quantity
+            }
+        },()=>{
+            this.$http.post('BtCApi/ShopCar/AddCart',this.state.addCartParams).then(res=>{
+                console.log(res)
+                if(res.status){
+                    Toast.success(res.msg, 1,null,true);
+                }
+            })
+        }) 
+    }
+
+
+    handelQuantity(qty){
+        // console.log(qty)
+        this.setState({
+            Quantity: qty
+        })
+    }
 
     shouldComponentUpdate(props, state) {
         return state.data
@@ -98,7 +139,7 @@ class Details extends Component {
         return (
             <div className="wineDetails">
                 <header>
-                    <Icon type="left" onTouchStart={()=>{
+                    <Icon type="left" onTouchStart={() => {
                         this.props.history.goBack()
                     }}></Icon>
                     <p>
@@ -113,7 +154,7 @@ class Details extends Component {
                             useOnPan={false}
                             renderTabBar={renderTabBar}
                         >
-                            <Goods data={data} banner={this.state.banner} commentsData={this.state.commentsData} />
+                            <Goods handelQuantity={this.handelQuantity.bind(this)} data={data} banner={this.state.banner} commentsData={this.state.commentsData} />
                             <GoodsDetails banner={this.state.banner} listAttr={this.state.listAttr} />
                             <Comment commentsData={this.state.commentsData} />
                         </Tabs>
@@ -122,30 +163,46 @@ class Details extends Component {
                 </div>
 
                 <div className="detailsFoot">
-                    <a href="javascript:" style={{ width: '15%', height: '100%' }} onTouchStart={()=>{
+                    <a href="javascript:" style={{ width: '15%', height: '100%' }} onTouchStart={() => {
                         this.props.history.push('/')
                     }}>
                         <span dangerouslySetInnerHTML={{ __html: octicons.home.toSVG() }} />
                         <span>首页</span>
                     </a>
-                    <a href="javascript:" style={{ width: '15%', height: '100%' }} onTouchStart={()=>{
-                            this.props.history.push('/cart')
-                        }}>
+                    <a href="javascript:" style={{ width: '15%', height: '100%' }} onTouchStart={() => {
+                        this.props.history.push('/cart')
+                    }}>
                         <span>
                             <span dangerouslySetInnerHTML={{ __html: octicons.inbox.toSVG() }} />
                             <i>
-                            <Badge text={1} />
+                                <Badge text={1} />
                             </i>
                         </span>
                         <span>购物车</span>
                     </a>
-                    <a href="javascript:" style={{ width: '35%', height: '100%' }}>加入购物车</a>
+                    <a href="javascript:" 
+
+                    style={{ width: '35%', height: '100%' }} 
+                    onTouchStart={this.handelAddCart.bind(this)}>加入购物车</a>
                     <a href="javascript:" style={{ width: '35%', height: '100%' }}>立即购买</a>
                 </div>
             </div>
         )
     }
 }
+let mapStateToProps = (state) => {
+    return {
+        cartsData: state.carts.data
+    }
+}
+
+let mapDispatchToProps = (dispatch) => {
+    return {
+
+    }
+}
+
+Details = connect(mapStateToProps, mapDispatchToProps)(Details)
 
 export default Details
 

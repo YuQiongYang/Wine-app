@@ -28,7 +28,9 @@ class Lists extends Component {
                                 <img src={`http://img0.gjw.com/product/${item.Pic}`}
                                     style={{ width: '1.5rem', background: '#dfdfdf' }} alt="" />
                                 <p>{item.ProductName}</p>
+                                <p>{item.Name}</p>
                                 <span style={{ display: item.ProductId ? "block" : "none" }}>￥ {item.ActivityMoney}</span>
+                                <span>￥ {item.Money}</span>
                                 </div>
                                 <div className="price" style={{ display: item.SumComment ? "block" : "none" }}>
                                     {/* <span>
