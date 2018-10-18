@@ -35,7 +35,7 @@ class EmptyCart extends Component {
     }
 
     render() {
-        console.log('empty',this.props.isShow)
+        // console.log('empty',this.props.isShow)
 
         return (
             <div className="emptyCarts" style={{display: this.props.isShow ? "none" : "block"}}>

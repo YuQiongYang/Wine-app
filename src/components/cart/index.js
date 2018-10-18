@@ -26,7 +26,7 @@ class Cart extends Component {
     componentWillMount() {
         let {isShow,getCartParams} = this.state
         this.$http.post('BtCApi/ShopCar/Cart',getCartParams).then(res=>{
-            console.log(res)
+            // console.log(res)
             if(res.status){
                 if(res.data.CartInfo.length>0){
                     this.setState({
@@ -45,6 +45,7 @@ class Cart extends Component {
     }
 
     render() {
+        // console.log(this.state.isChecked)
         return (
             <div className="carts">
                 <EmptyCart isShow={this.state.isShow}/>
