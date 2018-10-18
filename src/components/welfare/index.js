@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
+import AppNav from '../common/AppNav'
 import './index.scss'
 
 class Welfare extends Component{
     render(){
         return(
-            <div>Welfare</div>
+            <div className="Welfare">
+            Welfare
+                <AppNav />
+            </div>
         )
     }
 }

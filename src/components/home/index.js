@@ -13,10 +13,10 @@ class Home extends Component {
         this.state = {
             banner: [],
             kinds: [],
-            isMark:true
+            isMark: true
         }
     }
-    componentWillUnmount () {
+    componentWillUnmount() {
         this.unmount = true//这个开关用于判断组件是否销毁
         // console.log('当路由出去')
     }
@@ -33,12 +33,12 @@ class Home extends Component {
                     kinds.push(item)
                 }
             })
-            if ( this.props.unmount ) return false;
+            if (this.props.unmount) return false;
             this.setState({
                 banner,
                 kinds
-            },()=>{
-                if(this.state.banner && this.state.kinds){
+            }, () => {
+                if (this.state.banner && this.state.kinds) {
                     this.setState({
                         isMark: false
                     })
@@ -52,11 +52,13 @@ class Home extends Component {
     render() {
         return (
             <div className="app-home">
-                <Banner banner={this.state.banner} />
-                <Kinds kinds={this.state.kinds} />
-                <Selectwine />
+                <div className="home">
+                    <Banner banner={this.state.banner} />
+                    <Kinds kinds={this.state.kinds} />
+                    <Selectwine />
+                </div>
                 <AppNav></AppNav>
-                <Mask isMark={this.state.isMark}/>
+                <Mask isMark={this.state.isMark} />
                 {/* <Demo /> */}
             </div>
         )

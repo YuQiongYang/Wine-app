@@ -5,11 +5,9 @@ import React, {
 import {
   Route,
   Switch,
-  NavLink,
   withRouter
 } from 'react-router-dom'
 
-import { TabBar } from 'antd-mobile'
 import 'antd-mobile/dist/antd-mobile.css'
 import './assets/scss/common.scss'
 
@@ -21,6 +19,8 @@ import Mine from './components/mine'
 import Lists from './components/lists'
 import AllWines from './components/classify/allWines'
 import Details from './components/details'
+import Login from './components/mine/login/login'
+import msgLogin from './components/mine/login/msgLogin'
 
 class App extends Component {
   handleChangeCurrent(tab) {
@@ -31,17 +31,18 @@ class App extends Component {
   }
 
   render() {
-    let { pathname } = this.props.history.location
     return (<div className="App" >
       <Switch>
         <Route exact path="/" component={Home}></Route>
-        <Route path="/classify" component={Classify}></Route>
+        <Route exact path="/cart" component={Cart}></Route>
+        <Route exact path="/classify" component={Classify}></Route>
         <Route path="/mine" component={Mine}></Route>
-        <Route path="/cart" component={Cart}></Route>
         <Route path="/welfare" component={Welfare}></Route>
         <Route path="/details/:id" component={Details}></Route>
         <Route path="/lists/:ParentID" component={Lists}></Route>
         <Route path="/allWine/:ParentID" component={AllWines}></Route>
+        <Route path="/login" component={Login}></Route>
+        <Route path="/msgLogin" component={msgLogin}></Route>
       </Switch>
     </div>
     );

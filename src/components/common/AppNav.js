@@ -43,7 +43,7 @@ class AppNav extends Component {
     }
 
     handleChangeCurrent(tab) {
-        console.log(this.props.history);
+        // console.log(this.props.history);
         let { history } = this.props;
         if (history.location.pathname === tab.path) return false
         history.push(tab.path);

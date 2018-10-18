@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import AppNav from '../../common/AppNav'
 import Lists from '../../common/lists'
-import CartHeader from './cartHeader'
 import {withRouter} from 'react-router-dom'
+
+import  {Icon} from 'antd-mobile'
 
 class EmptyCart extends Component {
     constructor() {
@@ -39,7 +39,12 @@ class EmptyCart extends Component {
 
         return (
             <div className="emptyCarts" style={{display: this.props.isShow ? "none" : "block"}}>
-               <CartHeader />
+            <header>
+                <Icon type="left" onTouchStart={()=>{
+                    this.props.history.goBack()
+                }}></Icon>
+                <p>购物车</p>
+            </header>
                 <div className="cart">
                     <div className="tip">
                         <img src="http://m.gjw.com/images/cart_empty.png" />
@@ -56,7 +61,7 @@ class EmptyCart extends Component {
                         <Lists data={this.state.data}/>
                     </div>
                 </div>
-                <AppNav />
+                {/* <AppNav /> */}
             </div>
         )
     }

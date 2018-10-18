@@ -23,7 +23,7 @@ class Kinds extends Component {
     }
     render() {
         let { kinds } = this.props
-        console.log(kinds)
+        // console.log(kinds)
         return (
             <div className="kinds">
                 <Grid data={kinds} hasLine={false}

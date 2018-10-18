@@ -88,6 +88,9 @@ class Lists extends Component {
     }
     handerKey(list) {
         let { reqData } = this.state
+        this.setState({
+            isMask: true
+        })
         if (this.state.reqData.sort === list.sort) return false
         this.setState({
             listIdx: list.id,
@@ -192,7 +195,8 @@ class Lists extends Component {
                                                 this.setState({
                                                     currentIndex: i, reqData: {
                                                         ...this.state.reqData,
-                                                        sort: item.sort
+                                                        sort: item.sort,
+                                                        isMask: true
                                                     }
                                                 }, () => {
                                                     this.getData(this.state.reqData)

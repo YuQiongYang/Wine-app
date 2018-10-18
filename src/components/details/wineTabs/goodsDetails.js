@@ -22,7 +22,7 @@ class GoodsDetails extends Component {
     render() {
         let { tabs, idx } = this.state
         let { banner, listAttr } = this.props
-        console.log(listAttr)
+        // console.log(listAttr)
         return (
             <div className="goodsDetails">
                 <WhiteSpace />

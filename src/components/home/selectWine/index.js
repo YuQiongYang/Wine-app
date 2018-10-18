@@ -47,7 +47,7 @@ class Selectwine extends Component {
 
     getData(data) {
         this.$http.get('BtCApi/Home/GethomeProductByhot', data).then(res => {
-            console.log(res)
+            // console.log(res)
             if (res.status) {
                 this.setState({
                     data: res.data

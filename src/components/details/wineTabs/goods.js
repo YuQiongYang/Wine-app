@@ -72,9 +72,6 @@ class Goods extends Component {
                             }}>-</span>
                             <span>{this.state.goodsNum}</span>
                             <span onTouchStart={() => {
-                                if (goodsNum > 19) {
-                                    return false
-                                }
                                 this.setState({
                                     goodsNum: goodsNum + 1
                                 },()=>{

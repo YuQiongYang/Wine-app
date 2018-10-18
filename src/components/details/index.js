@@ -66,8 +66,18 @@ class Details extends Component {
                 BuyType: 0,
                 Type: 0,
             },
-            Quantity:1
+            Quantity: 1,
+            allCount: 0,
+            calCount: {
+                UserID: null,
+                Signid: null,
+                DeviceId: 'fb6cd64e-3ab6-4baa-bf2d-c8f9ff6a8cc8',
+                PhoneVersion: null,
+                ClientVersion: '1.0.0.1',
+                ClientType: 0
+            }
         }
+        this.handelCount.bind(this)
     }
     componentDidMount() {
         let Id = this.props.match.params.id
@@ -83,7 +93,7 @@ class Details extends Component {
                 }
             }, () => {
                 this.$http.post('http://m.gjw.com/BtCApi/Item/GetProduct', this.state.reqData).then(res => {
-                    console.log(res)
+                    // console.log(res)
                     if (res.status) {
                         this.setState({
                             data: res.data,
@@ -101,29 +111,44 @@ class Details extends Component {
                     }
                 })
             })
+            this.handelCount(this.state.calCount)
         }
 
+
     }
+
+    handelCount(req) {
+        this.$http.post('BtCApi/ShopCar/CartCount', req).then(res => {
+            if (res.status) {
+                this.setState({
+                    allCount: res.data
+                })
+            }
+        })
+    }
+
     handelAddCart() {
-        let {addCartParams, Quantity} = this.state
+        let { addCartParams, Quantity } = this.state
         this.setState({
-            addCartParams:{
+            addCartParams: {
                 ...addCartParams,
                 ProductID: this.props.match.params.id,
                 Quantity
             }
-        },()=>{
-            this.$http.post('BtCApi/ShopCar/AddCart',this.state.addCartParams).then(res=>{
-                console.log(res)
-                if(res.status){
-                    Toast.success(res.msg, 1,null,true);
+        }, () => {
+            this.$http.post('BtCApi/ShopCar/AddCart', this.state.addCartParams).then(res => {
+                // console.log(res)
+                if (res.status) {
+                    Toast.success(res.msg, 1, null, true);
+                    this.handelCount(this.state.calCount)
+
                 }
             })
-        }) 
+        })
     }
 
 
-    handelQuantity(qty){
+    handelQuantity(qty) {
         // console.log(qty)
         this.setState({
             Quantity: qty
@@ -175,15 +200,15 @@ class Details extends Component {
                         <span>
                             <span dangerouslySetInnerHTML={{ __html: octicons.inbox.toSVG() }} />
                             <i>
-                                <Badge text={1} />
+                                <Badge text={this.state.allCount} />
                             </i>
                         </span>
                         <span>购物车</span>
                     </a>
-                    <a href="javascript:" 
+                    <a href="javascript:"
 
-                    style={{ width: '35%', height: '100%' }} 
-                    onTouchStart={this.handelAddCart.bind(this)}>加入购物车</a>
+                        style={{ width: '35%', height: '100%' }}
+                        onTouchStart={this.handelAddCart.bind(this)}>加入购物车</a>
                     <a href="javascript:" style={{ width: '35%', height: '100%' }}>立即购买</a>
                 </div>
             </div>

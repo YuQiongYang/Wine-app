@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import EmptyCart from './cartStatus/emptyCart'
 import CartLists from './cartStatus/cartLists'
-
+import Mask from '../common/mask'
 import './index.scss'
 
 class Cart extends Component {
@@ -19,15 +19,19 @@ class Cart extends Component {
             },
             data:[],
             total:0,
-            qty:0
+            qty:0,
+            isMask: true
         }
     }
 
     componentWillMount() {
-        let {isShow,getCartParams} = this.state
+        let {getCartParams} = this.state
         this.$http.post('BtCApi/ShopCar/Cart',getCartParams).then(res=>{
             // console.log(res)
             if(res.status){
+                this.setState({
+                    isMask: false
+                })
                 if(res.data.CartInfo.length>0){
                     this.setState({
                         isShow:true,
@@ -53,6 +57,8 @@ class Cart extends Component {
                 data={this.state.data} 
                 total={this.state.total} 
                 qty={this.state.qty}/>
+                <Mask isMask={this.state.isMask} />
+                <Mask />
             </div>
         )
     }
